@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@section scripts{
+    <script type="module" src="~/game/main.js"></script>
+}
+<div class="screen">
+    <game-status></game-status>
+    <div class="game-board-wrapper">
+        <game-board index="3" ></game-board>
+    </div>
+</div>
