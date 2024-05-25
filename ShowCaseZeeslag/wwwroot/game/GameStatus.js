@@ -13,7 +13,8 @@
         const tekst = document.createElement('p');
         tekst.textContent = "Turn for:";
         const turnTileDiv = document.createElement("turn-tile-div")
-        turnTileDiv.setAttribute("class", "turn-tile");
+      turnTileDiv.setAttribute("class", "turn-tile");
+      turnTileDiv.classList.add("red")
 
 
         // Append the paragraph to the div element

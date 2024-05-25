@@ -14,7 +14,7 @@ namespace ShowCaseZeeslag.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        [Authorize]//geen admin
         public IActionResult Index()
         {
             return View();

@@ -84,13 +84,24 @@ export default class GameBoard extends HTMLElement {
     checkForWin(speler) {
         const tiles = this.GameTiles;
         const size = tiles.length;
-
-        console.log(this.IsWin);
         if (this.checkWinHorizontal(tiles, size) || this.checkWinVertical(tiles, size) || this.checkWinTopDiaganol(tiles, size) || this.checkWinBottomDiaganol(tiles, size)) {
             this.IsWin = true;
             setTimeout(() => { alert(`spel afgelopen, ${speler} heeft gewonnen!`) }, 250);
         }
+  }
+
+  updateTurnTile() {
+    const gameStatus = document.querySelector('.screen > game-status');
+    const TurnTileDiv = gameStatus.shadowRoot.querySelector(".field").querySelector("turn-tile-div");
+    if (TurnTileDiv.classList.contains("red")) {
+      TurnTileDiv.classList.remove("red")
+      TurnTileDiv.classList.add("blue")
     }
+    else {
+      TurnTileDiv.classList.remove("blue")
+      TurnTileDiv.classList.add("red")
+    }
+  }
     
 
     attachStyling() {

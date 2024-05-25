@@ -24,21 +24,24 @@
     applyEventlisteners() {
         this.addEventListener("click", (event) => {
             if ((!this.shadowRoot.querySelector(".board-tile").classList.contains("occupied")) && (!this.board.IsWin)) {
-                if (this.board.moveCount % 2 == 0) {
+                if (this.board.moveCount % 2 != 0) {
                     this.shadowRoot.querySelector(".board-tile").classList.add("occupied");
                     this.shadowRoot.querySelector(".board-tile").classList.add("blue");
                     this.board.GameTiles[this.getAttribute("rowid") - 1][this.getAttribute("columnid") - 1] = "blue";
-                    this.speler = "circkel"
+                  this.speler = "circkel"
+                  
                     
                 }
                 else {
-                    this.shadowRoot.querySelector(".board-tile").classList.add("occupied");
+                  this.shadowRoot.querySelector(".board-tile").classList.add("occupied");
+
                     this.shadowRoot.querySelector(".board-tile").classList.add("red");
                     this.board.GameTiles[this.getAttribute("rowid") - 1][this.getAttribute("columnid") - 1] = "red";
                     this.speler = "kruis"
-                }
+              }
                 this.board.moveCount++;
-                this.board.checkForWin(this.speler)
+              this.board.checkForWin(this.speler)
+              this.board.updateTurnTile();
             }
         })
     }
