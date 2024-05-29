@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShowCaseZeeslag.Data;
+using ShowCaseZeeslag.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<GameService>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
