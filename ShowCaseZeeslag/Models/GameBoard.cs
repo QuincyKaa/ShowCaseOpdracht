@@ -5,7 +5,7 @@
         public Player? ActivePlayer { get; set; }
         public List<Player> Players { get; set; } = [];
         public List<List<BoardTile>> Tiles { get; set; } = [];
-        public int Size { get; set; }
+        public int Size { get; set; } = 3;
         public bool IsWin { get; set; } = false;
 
         public GameBoard(int size)

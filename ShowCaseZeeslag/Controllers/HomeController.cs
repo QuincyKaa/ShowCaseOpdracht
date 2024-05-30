@@ -26,18 +26,10 @@ namespace ShowCaseZeeslag.Controllers
             player1.Name = "Player1";
             Player player2 = new Player();
             player2.Name = "player2";
-
-            _gameService.SetTile(0, 0, player1);
-            Debug.WriteLine(_gameService.checkForWin(player2));
-            _gameService.SetTile(1, 1, player1);
-            Debug.WriteLine(_gameService.checkForWin(player2));
-            /*_gameService.SetTile(2, 2, player1);
-            Debug.WriteLine(_gameService.checkForWin(player2));
-            _gameService.SetTile(3, 3, player1);
-            Debug.WriteLine(_gameService.checkForWin(player2));*/
-
-
-            return View();
+            _gameService.Board.Players.Add(player1);
+            _gameService.Board.Players.Add(player2);
+            _gameService.chooseStartingPlayer();
+            return View(gameBoard);
         }
 
         [Authorize(Roles = "Admin")]

@@ -4,7 +4,7 @@ namespace ShowCaseZeeslag.Services
 {
     public class GameService
     {
-        private GameBoard? Board { get; set; }
+        public GameBoard? Board { get; set; }
         private Random Random { get; } = new Random();
         public void SetGameBoard(GameBoard gameBoard)
         {
@@ -25,13 +25,13 @@ namespace ShowCaseZeeslag.Services
             int NextPlayerIndex = currentPlayerIndex + 1;
             if (NextPlayerIndex == Board.Players.Count) NextPlayerIndex = 0;
             Board.ActivePlayer = Board.Players[NextPlayerIndex];
-            Board.ActivePlayer.Symbol = 'o';
+            if (Board.ActivePlayer.Symbol.Equals(null)) Board.ActivePlayer.Symbol = 'o';
         }
 
-        public void SetTile(int x, int y, Player player)
+        public void SetTile(string x, string y, Player player)
         {
-            if (Board == null || player.Symbol.Equals(null)) return;
-            BoardTile? tile = Board.Tiles.SelectMany(item => item).FirstOrDefault(tile => tile.X == x && tile.Y == y);
+            if (Board == null || player.Symbol.Equals(null) || Board.IsWin == true) return;
+            BoardTile? tile = Board.Tiles.SelectMany(item => item).FirstOrDefault(tile => tile.X.ToString() == x && tile.Y.ToString() == y);
             if (tile == null || tile.Player != null) return;
             tile.Player = player;
         }
