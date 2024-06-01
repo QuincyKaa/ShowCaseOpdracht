@@ -15,7 +15,7 @@ namespace ShowCaseZeeslag.Services
         {
             if (Board == null || Board.Players.Count == 0) return;
             Board.ActivePlayer = Board.Players[Random.Next(Board.Players.Count)];
-            Board.ActivePlayer.Symbol = 'x';
+            Board.ActivePlayer.Symbol = "x";
         }
 
         public void changeActivePlayer()
@@ -25,12 +25,15 @@ namespace ShowCaseZeeslag.Services
             int NextPlayerIndex = currentPlayerIndex + 1;
             if (NextPlayerIndex == Board.Players.Count) NextPlayerIndex = 0;
             Board.ActivePlayer = Board.Players[NextPlayerIndex];
-            if (Board.ActivePlayer.Symbol.Equals(null)) Board.ActivePlayer.Symbol = 'o';
+            if (Board.ActivePlayer.Symbol == null)
+            {
+                Board.ActivePlayer.Symbol = "o";
+            };
         }
 
         public void SetTile(string x, string y, Player player)
         {
-            if (Board == null || player.Symbol.Equals(null) || Board.IsWin == true) return;
+            if (Board == null || player.Symbol == null || Board.IsWin == true) return;
             BoardTile? tile = Board.Tiles.SelectMany(item => item).FirstOrDefault(tile => tile.X.ToString() == x && tile.Y.ToString() == y);
             if (tile == null || tile.Player != null) return;
             tile.Player = player;

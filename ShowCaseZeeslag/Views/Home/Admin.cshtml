@@ -4,9 +4,24 @@
 
 <h1>Admin page</h1>
 <p>Change the size of the board:</p>
-<select class="dropdown">
-    <option value="option1">3x3</option>
-    <option value="option2">4x4</option>
-    <option value="option3">5x5</option>
-    <option value="option4">6x6</option>
-</select>
+<form id="boardSizeForm" method="get" action="/Game/Index">
+    <select id="boardSizeDropdown" class="dropdown" name="boardSize">
+        <option value="3">3x3</option>
+        <option value="4">4x4</option>
+        <option value="5">5x5</option>
+        <option value="6">6x6</option>
+    </select>
+    <!-- Voeg een submit knop toe -->
+    <input type="submit" value="Change Board Size">
+</form>
+
+<script>
+    document.getElementById('boardSizeForm').addEventListener('submit', function (event) {
+        // Stop het standaardgedrag van het formulier (navigeren naar een andere pagina)
+        event.preventDefault();
+        // Haal de geselecteerde bordgrootte op
+        var selectedSize = document.getElementById('boardSizeDropdown').value;
+        // Voeg de bordgrootte toe aan de querystring van de huidige pagina-URL en navigeer naar die URL
+        window.location.href = "/Home/?boardSize=" + selectedSize;
+    });
+</script>

@@ -17,18 +17,21 @@ namespace ShowCaseZeeslag.Controllers
             _gameService = gameService;
         }
 
-        [Authorize]//geen admin
+        [Authorize]
         public IActionResult Index()
         {
-            GameBoard gameBoard = new(2);
+
+
+            GameBoard gameBoard = new GameBoard(3);
             _gameService.SetGameBoard(gameBoard);
-            Player player1 = new Player();
-            player1.Name = "Player1";
-            Player player2 = new Player();
-            player2.Name = "player2";
+
+            Player player1 = new Player { Name = "Player1" };
+            Player player2 = new Player { Name = "Player2" };
+
             _gameService.Board.Players.Add(player1);
             _gameService.Board.Players.Add(player2);
             _gameService.chooseStartingPlayer();
+
             return View(gameBoard);
         }
 

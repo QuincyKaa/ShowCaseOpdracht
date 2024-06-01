@@ -26,23 +26,6 @@
     });   
   }
 }
-
-
-      /*connection.on("ReceiveActivePlayer", function (user, message) {
-        if (player.symbol == "x") {
-          this.shadowRoot.querySelector(".board-tile").classList.add("red");
-          //toevoegen zet
-        }
-        else {
-          this.shadowRoot.querySelector(".board-tile").classList.add("red");
-          //toevoegen zet
-        }
-      });*/
-      //hieronder met signalr
-      /*this.board.checkForWin(active speler meegeven)
-            this.board.updateTurnTile();
-          }
-      })*/
     
              
     
