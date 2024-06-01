@@ -10,19 +10,30 @@ namespace ShowCaseZeeslag.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly GameService _gameService;
+        private readonly GrootteService _grootteService;
 
-        public HomeController(ILogger<HomeController> logger, GameService gameService)
+
+        public HomeController(ILogger<HomeController> logger, GameService gameService, GrootteService grootteService)
         {
             _logger = logger;
             _gameService = gameService;
+            _grootteService = grootteService;
+        }
+
+        [HttpPost]
+        public IActionResult SaveGrootte(int grootte)
+        {
+            Debug.WriteLine(grootte);
+            _grootteService.AddOrUpdateVeldGrootte(grootte);
+            return Ok(); // Terugsturen van een succesvolle respons
         }
 
         [Authorize]
         public IActionResult Index()
         {
-
-
-            GameBoard gameBoard = new GameBoard(3);
+            int? grootte = _grootteService.GetVeldGrootte();
+            if (grootte == null) grootte = 3;
+            GameBoard gameBoard = new GameBoard((int)grootte);
             _gameService.SetGameBoard(gameBoard);
 
             Player player1 = new Player { Name = "Player1" };

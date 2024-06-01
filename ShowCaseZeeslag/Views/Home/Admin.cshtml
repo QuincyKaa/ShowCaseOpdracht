@@ -4,24 +4,31 @@
 
 <h1>Admin page</h1>
 <p>Change the size of the board:</p>
-<form id="boardSizeForm" method="get" action="/Game/Index">
-    <select id="boardSizeDropdown" class="dropdown" name="boardSize">
-        <option value="3">3x3</option>
-        <option value="4">4x4</option>
-        <option value="5">5x5</option>
-        <option value="6">6x6</option>
-    </select>
-    <!-- Voeg een submit knop toe -->
-    <input type="submit" value="Change Board Size">
-</form>
+<!-- Admin view (admin.cshtml) -->
+<select id="grootteDropdown" class="dropdown">
+    <option value="3">3x3</option>
+    <option value="4">4x4</option>
+    <option value="5">5x5</option>
+    <option value="6">6x6</option>
+</select>
+<button id="opslaanButton">Opslaan</button>
 
 <script>
-    document.getElementById('boardSizeForm').addEventListener('submit', function (event) {
-        // Stop het standaardgedrag van het formulier (navigeren naar een andere pagina)
-        event.preventDefault();
-        // Haal de geselecteerde bordgrootte op
-        var selectedSize = document.getElementById('boardSizeDropdown').value;
-        // Voeg de bordgrootte toe aan de querystring van de huidige pagina-URL en navigeer naar die URL
-        window.location.href = "/Home/?boardSize=" + selectedSize;
+    document.getElementById("opslaanButton").addEventListener("click", function () {
+        var selectedGrootte = document.getElementById("grootteDropdown").value;
+
+        // Stuur een verzoek naar de server om de grootte op te slaan
+        fetch("/Home/SaveGrootte?grootte=" + selectedGrootte, {
+            method: "POST"
+        }).then(response => {
+            if (response.ok) {
+                console.log("Grootte succesvol opgeslagen");
+                // Voeg hier eventueel logica toe voor het bijwerken van de gebruikersinterface
+            } else {
+                console.error("Fout bij opslaan grootte");
+            }
+        }).catch(error => {
+            console.error("Netwerkfout:", error);
+        });
     });
 </script>
