@@ -11,6 +11,7 @@ namespace ShowCaseZeeslag.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly GameService _gameService;
         private readonly GrootteService _grootteService;
+        private GameBoard _gameBoard;
 
 
         public HomeController(ILogger<HomeController> logger, GameService gameService, GrootteService grootteService)
