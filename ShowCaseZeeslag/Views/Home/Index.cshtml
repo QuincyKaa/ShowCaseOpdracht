@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model GameBoard
+
+@section scripts{
+    <script type="module" src="~/game/main.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+}
+<div class="screen">
+    <game-status></game-status>
+    <div class="game-board-wrapper">
+        <game-board index="@Model.Size"></game-board>
+    </div>
+</div>

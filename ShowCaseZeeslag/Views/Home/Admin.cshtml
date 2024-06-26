@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Admin page</h1>
+<p>Pas de grootte van het bord aan:</p>
+<!-- Admin view (admin.cshtml) -->
+<select id="grootteDropdown" class="dropdown">
+    <option value="3">3x3</option>
+    <option value="4">4x4</option>
+    <option value="5">5x5</option>
+    <option value="6">6x6</option>
+</select>
+<button id="opslaanButton">Opslaan</button>
+
+<script>
+    document.getElementById("opslaanButton").addEventListener("click", function () {
+        var selectedGrootte = document.getElementById("grootteDropdown").value;
+
+        // Stuur een verzoek naar de server om de grootte op te slaan
+        fetch("/Home/SaveGrootte?grootte=" + selectedGrootte, {
+            method: "POST"
+        }).then(response => {
+            if (response.ok) {
+                console.log("Grootte succesvol opgeslagen");
+            } else {
+                console.error("Fout bij opslaan grootte");
+            }
+        }).catch(error => {
+            console.error("Netwerkfout:", error);
+        });
+    });
+</script>
