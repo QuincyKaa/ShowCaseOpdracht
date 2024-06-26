@@ -8,7 +8,7 @@
     cy.get('#login-submit').click();
 
     // Wait for the SignalR connection to be established
-    cy.wait(250);
+    cy.wait(500);
 
     cy.get('.container')
       .find('game-board')
